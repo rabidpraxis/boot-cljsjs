@@ -63,6 +63,7 @@
     (cond->
       (c/with-pre-wrap fileset
         (let [target (io/file tmp fname)]
+          (io/make-parents target)
           (util/info "Downloading %s\n" fname)
           (with-open [is (:body (http/get url {:as :stream}))]
             (io/copy is target)))
